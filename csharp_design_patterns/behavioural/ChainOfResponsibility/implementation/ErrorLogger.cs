@@ -1,4 +1,4 @@
-namespace csharp_design_patterns.behavioural.chain_of_responsibility.implementation;
+namespace csharp_design_patterns.behavioural.ChainOfResponsibility.implementation;
 
 public class ErrorLogger : ILogger
 {

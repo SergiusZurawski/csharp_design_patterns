@@ -1,4 +1,4 @@
-namespace csharp_design_patterns.behavioural.chain_of_responsibility;
+namespace csharp_design_patterns.behavioural.ChainOfResponsibility;
 
 public class Message
 {

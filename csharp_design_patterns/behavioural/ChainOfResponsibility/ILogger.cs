@@ -1,4 +1,4 @@
-namespace csharp_design_patterns.behavioural.chain_of_responsibility;
+namespace csharp_design_patterns.behavioural.ChainOfResponsibility;
 
 /*
  The Chain of Responsibility pattern is a behavioral design pattern that allows 

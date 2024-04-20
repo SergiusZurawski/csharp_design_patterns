@@ -1,6 +1,6 @@
-namespace csharp_design_patterns.behavioural.chain_of_responsibility.implementation;
+namespace csharp_design_patterns.behavioural.ChainOfResponsibility.implementation;
 
-public class InfoLogger : ILogger
+public class DebugLogger : ILogger
 {
     private ILogger _nextLogger;
 
@@ -11,9 +11,9 @@ public class InfoLogger : ILogger
 
     public void Log(Message message)
     {
-        if (message.Severity == LogLevel.Info)
+        if (message.Severity == LogLevel.Debug)
         {
-            Console.WriteLine($"Info: {message.Text}");
+            Console.WriteLine($"Debug: {message.Text}");
         }
         else
         {

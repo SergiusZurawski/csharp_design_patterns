@@ -5,3 +5,4 @@ using csharp_design_patterns.behavioural.ChainOfResponsibility.client;
 Console.WriteLine("Hello, World!");
 Example.ExecuteExample();
 csharp_design_patterns.behavioural.momento.client.Example.ExecuteExample();
+csharp_design_patterns.behavioural.command.client.Example.ExecuteExample();

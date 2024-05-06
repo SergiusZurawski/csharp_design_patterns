@@ -8,7 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="behavioural\iterator\" />
       <Folder Include="creational\" />
       <Folder Include="structural\" />
     </ItemGroup>

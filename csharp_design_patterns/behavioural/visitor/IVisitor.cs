@@ -1,3 +1,6 @@
+using csharp_design_patterns.behavioural.visitor.implementaion;
+using csharp_design_patterns.behavioural.visitor.implementation;
+
 namespace csharp_design_patterns.behavioural.visitor;
 /*
  Visitor Pattern Structure
@@ -10,8 +13,16 @@ namespace csharp_design_patterns.behavioural.visitor;
    Object Structure: A collection or composite of elements that can enumerate its elements and provide a high-level interface to allow the visitor to visit its elements.
  
  */
+/*
 public interface IShapeVisitor
 {
     void Visit(Circle circle);
     void Visit(Rectangle rectangle);
+}
+*/
+
+public interface IVisitor
+{
+    void Visit(ElementA element);
+    void Visit(ElementB element);
 }

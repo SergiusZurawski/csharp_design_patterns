@@ -9,13 +9,11 @@
 
     <ItemGroup>
       <Folder Include="creational\" />
-      <Folder Include="structural\adapter\implementaion\" />
-      <Folder Include="structural\bridge\implementaion\" />
-      <Folder Include="structural\composite\implementaion\" />
-      <Folder Include="structural\decorator\implementaion\" />
-      <Folder Include="structural\facade\implementaion\" />
-      <Folder Include="structural\flyweight\implementaion\" />
-      <Folder Include="structural\proxy\implementaion\" />
+      <Folder Include="structural\composite\implementation\" />
+      <Folder Include="structural\decorator\implementation\" />
+      <Folder Include="structural\facade\implementation\" />
+      <Folder Include="structural\flyweight\implementation\" />
+      <Folder Include="structural\proxy\implementation\" />
     </ItemGroup>
 
 </Project>

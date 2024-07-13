@@ -1,3 +1,5 @@
+using csharp_design_patterns.structural.bridge.implementation;
+
 namespace csharp_design_patterns.structural.bridge.client;
 
 /*

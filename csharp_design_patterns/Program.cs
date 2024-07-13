@@ -6,3 +6,5 @@ Console.WriteLine("Hello, World!");
 Example.ExecuteExample();
 csharp_design_patterns.behavioural.momento.client.Example.ExecuteExample();
 csharp_design_patterns.behavioural.command.client.Example.ExecuteExample();
+Console.WriteLine("Hello, World!2");
+csharp_design_patterns.structural.adapter.client.Example.ExecuteExample();

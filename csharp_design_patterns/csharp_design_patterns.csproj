@@ -9,7 +9,6 @@
 
     <ItemGroup>
       <Folder Include="creational\" />
-      <Folder Include="structural\proxy\implementation\" />
     </ItemGroup>
 
 </Project>

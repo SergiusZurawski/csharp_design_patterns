@@ -1,0 +1,200 @@
+.
+├── behavioural
+│   ├── ChainOfResponsibility
+│   │   ├── client
+│   │   │   └── Example.cs
+│   │   ├── ILogger.cs
+│   │   ├── implementation
+│   │   │   ├── DebugLogger.cs
+│   │   │   ├── ErrorLogger.cs
+│   │   │   └── InfoLogger.cs
+│   │   ├── LogLevel.cs
+│   │   └── Message.cs
+│   ├── command
+│   │   ├── client
+│   │   │   └── Example.cs
+│   │   ├── ICommand.cs
+│   │   └── implementation
+│   │       ├── FileReceiver.cs
+│   │       ├── Invoker.cs
+│   │       ├── IReceiver.cs
+│   │       └── OpenCommand.cs
+│   ├── interpreter
+│   │   ├── client
+│   │   │   └── Example.cs
+│   │   ├── IExpression.cs
+│   │   └── implementation
+│   │       ├── AddExpression.cs
+│   │       └── NumberExpression.cs
+│   ├── iterator
+│   │   ├── client
+│   │   │   └── Example.cs
+│   │   └── implementation
+│   │       ├── Book.cs
+│   │       ├── BookEnumerator.cs
+│   │       ├── Library2.cs
+│   │       └── Library.cs
+│   ├── mediator
+│   │   ├── ChatRoom.cs
+│   │   ├── client
+│   │   │   └── Example.cs
+│   │   ├── IChatRoomMediator.cs
+│   │   └── Participant.cs
+│   ├── momento
+│   │   ├── Caretaker.cs
+│   │   ├── client
+│   │   │   └── Example.cs
+│   │   ├── Editor.cs
+│   │   └── EditorMemento.cs
+│   ├── observer
+│   │   ├── client
+│   │   │   ├── Example.cs
+│   │   │   └── ExampleWithDefInterfaces.cs
+│   │   ├── DefaultInterfaces
+│   │   │   ├── StockDisplay.cs
+│   │   │   └── StockTicker.cs
+│   │   ├── implementation
+│   │   │   ├── Investor.cs
+│   │   │   ├── Market.cs
+│   │   │   └── StockPrice.cs
+│   │   ├── IObservable.cs
+│   │   └── IObserver.cs
+│   ├── state
+│   │   ├── client
+│   │   │   └── Example.cs
+│   │   ├── Document.cs
+│   │   ├── IDocumentState.cs
+│   │   └── NewState.cs
+│   ├── strategy
+│   │   ├── client
+│   │   │   └── Example.cs
+│   │   ├── implementaion
+│   │   │   ├── BubbleSortStrategy.cs
+│   │   │   ├── QuickSortStrategy.cs
+│   │   │   └── SortContext.cs
+│   │   └── ISortStrategy.cs
+│   ├── TemplateMethod
+│   │   ├── client
+│   │   │   └── Example.cs
+│   │   ├── DataProcessor.cs
+│   │   └── implementation
+│   │       ├── CsvDataProcessor.cs
+│   │       └── XmlDataProcessor.cs
+│   └── visitor
+│       ├── client
+│       │   └── Example.cs
+│       ├── IElement.cs
+│       ├── implementation
+│       │   ├── ConcreteVisitor.cs
+│       │   ├── ElementA.cs
+│       │   └── ElementB.cs
+│       └── IVisitor.cs
+├── creational
+│   ├── abstract _factory
+│   │   ├── client
+│   │   │   └── Example.cs
+│   │   ├── IButton.cs
+│   │   ├── ICheckbox.cs
+│   │   ├── IGUIFactory.cs
+│   │   └── implementation
+│   │       ├── Application.cs
+│   │       ├── MacButton.cs
+│   │       ├── MacCheckbox.cs
+│   │       ├── MacFactory.cs
+│   │       ├── RealDocument.cs
+│   │       ├── WinButton.cs
+│   │       ├── WinCheckbox.cs
+│   │       └── WinFactory.cs
+│   ├── builder
+│   │   ├── client
+│   │   │   └── Example.cs
+│   │   ├── IMealBuilder.cs
+│   │   └── implementation
+│   │       ├── Meal.cs
+│   │       ├── MealDirector.cs
+│   │       ├── StandardMealBuilder.cs
+│   │       └── VegetarianMealBuilder.cs
+│   ├── factory_method
+│   │   ├── client
+│   │   │   └── Example.cs
+│   │   ├── implementation
+│   │   │   ├── EmailNotificationCreator.cs
+│   │   │   ├── EmailNotification.cs
+│   │   │   ├── PushNotification.cs
+│   │   │   └── SmsNotification.cs
+│   │   ├── INotification.cs
+│   │   └── NotificationCreator.cs
+│   ├── object_pool
+│   │   ├── Bullet.cs
+│   │   ├── client
+│   │   │   └── Example.cs
+│   │   └── implementation
+│   │       ├── BulletPool.cs
+│   │       └── Vector.cs
+│   ├── prototype
+│   │   ├── client
+│   │   │   └── Example.cs
+│   │   ├── implementation
+│   │   │   ├── Circle.cs
+│   │   │   └── Rectangle.cs
+│   │   └── IShape.cs
+│   └── singleton
+│       ├── client
+│       │   └── Example.cs
+│       ├── IDocument.cs
+│       └── implementation
+│           └── Logger.cs
+└── structural
+    ├── adapter
+    │   ├── client
+    │   │   └── Example.cs
+    │   ├── IAdvancedMediaPlayer.cs
+    │   ├── IMediaPlayer.cs
+    │   └── implementation
+    │       ├── AudioPlayer.cs
+    │       ├── MediaAdapter.cs
+    │       └── VlcPlayer.cs
+    ├── bridge
+    │   ├── client
+    │   │   └── Example.cs
+    │   ├── IDevice.cs
+    │   ├── implementation
+    │   │   ├── BasicRemote.cs
+    │   │   └── TV.cs
+    │   └── RemoteControl.cs
+    ├── composite
+    │   ├── client
+    │   │   └── Example.cs
+    │   ├── IFileSystemItem.cs
+    │   └── implementation
+    │       ├── Directory.cs
+    │       └── File.cs
+    ├── decorator
+    │   ├── client
+    │   │   └── Example.cs
+    │   ├── IMessage.cs
+    │   └── implementation
+    │       ├── HtmlDecorator.cs
+    │       ├── MessageDecorator.cs
+    │       └── SimpleMessage.cs
+    ├── facade
+    │   ├── Amplifier.cs
+    │   ├── client
+    │   │   └── Example.cs
+    │   └── implementation
+    │       └── HomeTheaterFacade.cs
+    ├── flyweight
+    │   ├── client
+    │   │   └── Example.cs
+    │   ├── ICharacter.cs
+    │   └── implementation
+    │       ├── Character.cs
+    │       └── CharacterFactory.cs
+    └── proxy
+        ├── client
+        │   └── Example.cs
+        ├── IDocument.cs
+        └── implementation
+            ├── DocumentProxy.cs
+            └── RealDocument.cs
+

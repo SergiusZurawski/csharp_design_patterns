@@ -1,0 +1,319 @@
+.
+├── behavioural
+│   ├── ChainOfResponsibility
+            ILogger errorLogger = new ErrorLogger();
+            ILogger infoLogger = new InfoLogger();
+            ILogger debugLogger = new DebugLogger();
+            debugLogger.SetNext(infoLogger);
+            infoLogger.SetNext(errorLogger);
+            var messages = new List<Message>
+            {
+                new Message("This is an information.", LogLevel.Info),
+                new Message("This is a debug message.", LogLevel.Debug),
+                new Message("This is an error!", LogLevel.Error)
+            };
+            foreach (var message in messages)
+            {
+                debugLogger.Log(message);
+            }
+│   ├── command
+            var receiver = new FileReceiver();
+            var openCmd = new OpenCommand(receiver);
+            var writeCmd = new WriteCommand(receiver);
+            var saveCmd = new SaveCommand(receiver);
+            var invoker = new Invoker();
+            invoker.SetOnOpenCommand(openCmd);
+            invoker.SetOnWriteCommand(writeCmd);
+            invoker.SetOnSaveCommand(saveCmd);
+            invoker.Open();
+            invoker.Write();
+            invoker.Save();
+│   ├── interpreter
+            IExpression expression = new SubtractExpression(
+                new AddExpression(
+                    new NumberExpression(3),
+                    new NumberExpression(5)
+                ),
+                new NumberExpression(2)
+            );
+            Console.WriteLine("Result: " + expression.Interpret()); // Output: 6
+│   ├── iterator
+            var library = new Library();
+            library.AddBook(new Book { Title = "1984", Author = "George Orwell" });
+            library.AddBook(new Book { Title = "Brave New World", Author = "Aldous Huxley" });
+            foreach (Book book in library)
+            {
+                Console.WriteLine($"Book: {book.Title}, Author: {book.Author}");
+            }
+│   ├── mediator
+            var chatRoom = new ChatRoom();
+            var john = new Participant("1", "John");
+            var jane = new Participant("2", "Jane");
+
+            chatRoom.AddParticipant(john);
+            chatRoom.AddParticipant(jane);
+
+            john.Send("Hi Jane!");
+            jane.Send("Hey John, how are you?");
+│   ├── momento
+            var editor = new Editor();
+            var caretaker = new Caretaker();
+            editor.SetContent("First sentence.");
+            caretaker.SaveState(editor);  // Save state
+            editor.SetContent("Second sentence.");
+            caretaker.SaveState(editor);  // Save state
+            editor.SetContent("Third sentence.");
+            // Restore to the previous saved state
+            caretaker.RestoreState(editor);
+            Console.WriteLine(editor.GetContent());  // Outputs: Second sentence.
+            caretaker.RestoreState(editor);
+            Console.WriteLine(editor.GetContent());  // Outputs: First sentence.
+            caretaker.RestoreState(editor);
+            Console.WriteLine(editor.GetContent());
+│   ├── observer
+            Market market = new Market();
+            Investor investorA = new Investor("Alice");
+            Investor investorB = new Investor("Bob");
+            market.Subscribe(investorA);
+            market.Subscribe(investorB);
+            market.Notify(new StockPrice { Symbol = "AAPL", Price = 150.50m });
+            market.Notify(new StockPrice { Symbol = "MSFT", Price = 250.75m });
+            market.Unsubscribe(investorB);
+            market.Notify(new StockPrice { Symbol = "GOOG", Price = 2725.00m }); // Bob won't receive this update
+            //Default interfaces
+            var data = new List<int> { 5, 1, 4, 2, 8 };
+            Market market = new Market();
+            Investor investorA = new Investor("Alice");
+            Investor investorB = new Investor("Bob");
+            market.Subscribe(investorA);
+            market.Subscribe(investorB);
+            market.Notify(new StockPrice { Symbol = "AAPL", Price = 150.50m });
+            market.Notify(new StockPrice { Symbol = "MSFT", Price = 250.75m });
+            market.Unsubscribe(investorB);
+            market.Notify(new StockPrice { Symbol = "GOOG", Price = 2725.00m }); // Bob won't receive this update
+│   ├── state
+            Document doc = new Document();
+            doc.Approve(); // Changes state to ApprovedState
+            doc.Reject();  // Since it's approved, it cannot be rejected
+│   ├── strategy
+            var data = new List<int> { 5, 1, 4, 2, 8 };
+            // Using QuickSort
+            var context = new SortContext(new QuickSortStrategy());
+            var sortedData = context.Sort(data);
+            Console.WriteLine(string.Join(", ", sortedData));
+            // Switching to BubbleSort at runtime
+            context.SetStrategy(new BubbleSortStrategy());
+            sortedData = context.Sort(data);
+            Console.WriteLine(string.Join(", ", sortedData));
+│   ├── TemplateMethod
+            // Create a list of elements
+            DataProcessor csvProcessor = new CsvDataProcessor();
+            csvProcessor.ProcessData();
+            Console.WriteLine();
+            DataProcessor xmlProcessor = new XmlDataProcessor();
+            xmlProcessor.ProcessData();
+│   └── visitor
+            List<IElement> elements = new List<IElement>
+            {
+                new ElementA(),
+                new ElementB()
+            };
+            // Create a visitor
+            IVisitor visitor = new ConcreteVisitor();
+            // Iterate over elements and accept visitor
+            foreach (IElement element in elements)
+            {
+                element.Accept(visitor);
+            }
+├── creational
+│   ├── abstract_factory
+            IGUIFactory factory;
+            Application app;
+            string osType = GetOperatingSystemType();
+            if (osType == "Windows")
+            {
+                factory = new WinFactory();
+            }
+            else if (osType == "Mac")
+            {
+                factory = new MacFactory();
+            }
+            else
+            {
+                throw new Exception("Error! Unknown operating system.");
+            }
+            app = new Application(factory);
+            app.Paint();
+            Console.ReadKey();
+│   ├── builder
+            var director = new MealDirector();
+            // Build a standard meal
+            IMealBuilder standardMealBuilder = new StandardMealBuilder();
+            director.ConstructStandardMeal(standardMealBuilder);
+            Meal standardMeal = standardMealBuilder.Build();
+            Console.WriteLine(standardMeal);
+            // Build a vegetarian meal
+            IMealBuilder vegetarianMealBuilder = new VegetarianMealBuilder();
+            director.ConstructVegetarianMeal(vegetarianMealBuilder);
+            Meal vegetarianMeal = vegetarianMealBuilder.Build();
+            Console.WriteLine(vegetarianMeal);
+            // Build a custom meal
+            IMealBuilder customMealBuilder = new StandardMealBuilder();
+            Meal customMeal = customMealBuilder
+                .AddMainCourse("Chicken Wrap")
+                .AddDrink("Lemonade")
+                .Build();
+            Console.WriteLine(customMeal);
+│   ├── factory_method
+            NotificationCreator creator;
+            Console.WriteLine("Enter the type of notification you want to send (Email/SMS/Push):");
+            string notificationType = Console.ReadLine();
+            // Decide which creator to use based on user input
+            // Decide which creator to use based on user input
+            switch (notificationType.ToLower())
+            {
+                case "email":
+                    creator = new EmailNotificationCreator();
+                    break;
+                case "sms":
+                    creator = new SmsNotificationCreator();
+                    break;
+                case "push":
+                    creator = new PushNotificationCreator();
+                    break;
+                default:
+                    Console.WriteLine("Invalid notification type.");
+                    return;
+            }
+            creator.NotifyUser("Hello! This is a test notification.");
+│   ├── object_pool
+            BulletPool bulletPool = new BulletPool(initialSize: 5, maxPoolSize: 10);
+            // Simulate firing bullets
+            for (int i = 0; i < 7; i++)
+            {
+                var bullet = bulletPool.GetBullet();
+                if (bullet != null)
+                {
+                    bullet.Fire(new Vector(i, i * 10), new Vector(1, 0));
+                }
+            }
+            // Update bullets
+            bulletPool.UpdateBullets();
+            // Return bullets to pool (simulate bullets being destroyed)
+            // In a real game, this would be triggered by collision detection or going off-screen
+            foreach (var bullet in bulletPool._inUseBullets.ToArray())
+            {
+                bulletPool.ReturnBullet(bullet);
+            }
+            // Fire more bullets to see reuse
+            for (int i = 0; i < 3; i++)
+            {
+                var bullet = bulletPool.GetBullet();
+                if (bullet != null)
+                {
+                    bullet.Fire(new Vector(i, i * 5), new Vector(0, 1));
+                }
+            }
+            // Update bullets again
+            bulletPool.UpdateBullets();
+│   ├── prototype
+            Circle circle1 = new Circle(5);
+            Rectangle rectangle1 = new Rectangle(10, 20);
+            // Clone the objects
+            Circle circle2 = (Circle)circle1.Clone();
+            Rectangle rectangle2 = (Rectangle)rectangle1.Clone();
+            // Modify the cloned objects
+            circle2.Radius = 10;
+            rectangle2.Width = 15;
+            // Display information
+            circle1.GetInfo(); // This is a circle with radius 5.
+            circle2.GetInfo(); // This is a circle with radius 10.
+            rectangle1.GetInfo(); // This is a rectangle with width 10 and height 20.
+            rectangle2.GetInfo(); // This is a rectangle with width 15 and height 20.
+│   └── singleton
+            Logger logger1 = Logger.Instance;
+            Logger logger2 = Logger.Instance;
+            logger1.Log("First message");
+            logger2.Log("Second message");
+            // Check if both instances are the same
+            Console.WriteLine($"Are logger1 and logger2 the same instance? {logger1 == logger2}");
+└── structural
+    ├── adapter
+            AudioPlayer audioPlayer = new AudioPlayer();
+            audioPlayer.Play("mp3", "song.mp3");
+            audioPlayer.Play("mp4", "movie.mp4");
+            audioPlayer.Play("vlc", "video.vlc");
+            audioPlayer.Play("avi", "myMovie.avi");
+    ├── bridge
+            IDevice tv = new TV();
+            RemoteControl basicRemote = new BasicRemote(tv);
+            basicRemote.TogglePower();
+            basicRemote.VolumeUp();
+            basicRemote.VolumeDown();
+            basicRemote.TogglePower();
+            Console.WriteLine();
+            IDevice radio = new Radio();
+            RemoteControl advancedRemote = new AdvancedRemote(radio);
+            advancedRemote.TogglePower();
+            advancedRemote.VolumeUp();
+            advancedRemote.VolumeDown();
+            ((AdvancedRemote)advancedRemote).Mute();
+            advancedRemote.TogglePower();
+    ├── composite
+            // Create the root directory
+            Directory root = new Directory("Root");
+            // Create files
+            File file1 = new File("File1.txt");
+            File file2 = new File("File2.txt");
+            // Create subdirectory
+            Directory subDir = new Directory("SubDirectory");
+            // Create files in subdirectory
+            File file3 = new File("File3.txt");
+            // Add files and subdirectory to the root directory
+            root.Add(file1);
+            root.Add(file2);
+            root.Add(subDir);
+            // Add file to subdirectory
+            subDir.Add(file3);
+            // Display the file system
+            root.Display(1);
+    ├── decorator
+            // Create a simple message
+            IMessage message = new SimpleMessage("Hello, World!");
+            // Decorate the message with HTML formatting
+            IMessage htmlMessage = new HtmlDecorator(message);
+            // Further decorate the HTML message with Base64 encoding
+            IMessage base64HtmlMessage = new Base64Decorator(htmlMessage);
+            // Display the original, HTML, and Base64+HTML messages
+            Console.WriteLine("Original Message: " + message.GetContent());
+            Console.WriteLine("HTML Message: " + htmlMessage.GetContent());
+            Console.WriteLine("Base64 + HTML Message: " + base64HtmlMessage.GetContent());
+    ├── facade
+            // Create subsystem components
+            Amplifier amplifier = new Amplifier();
+            DVDPlayer dvdPlayer = new DVDPlayer();
+            Projector projector = new Projector();
+            // Create the facade
+            HomeTheaterFacade homeTheater = new HomeTheaterFacade(amplifier, dvdPlayer, projector);
+            // Use the facade to watch a movie
+            homeTheater.WatchMovie("Inception");
+            // Use the facade to end the movie
+            homeTheater.EndMovie();
+    ├── flyweight
+            string document = "ABRACADABRA";
+            char[] chars = document.ToCharArray();
+            CharacterFactory factory = new CharacterFactory();
+            int fontSize = 12;
+            for (int i = 0; i < chars.Length; i++)
+            {
+                ICharacter character = factory.GetCharacter(chars[i]);
+                character.Display(fontSize, i);
+            }
+    └── proxy
+            IDocument document = new DocumentProxy("largeFile.txt");
+            // The file will be loaded only when the content is displayed for the first time
+            Console.WriteLine("First call to DisplayContent:");
+            document.DisplayContent();
+            // Subsequent calls will not reload the file
+            Console.WriteLine("Second call to DisplayContent:");
+            document.DisplayContent();
